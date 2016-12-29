@@ -5,16 +5,49 @@
   
   <title>Hexo安装笔记 | Zhaohan‘s bolg</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="https://help.github.com/articles/setting-up-an-apex-domain/">
+  <meta name="description" content="hexo是一款基于github的博客系统
+以下安装时在mac上进行的
+
+##1.本地安装首先要安装nodejs。
+
+在本地建一个目录作保存你的站点的本地备份
+
+12$ cd /home/user/admin/$ mkdir my.me
+
+安装,参考官网说明
+
+12345$ sudo npm install hexo-cli -g$ hexo init blog$ cd blog$ npm ins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo安装笔记">
 <meta property="og:url" content="http://zhaohan.me/2016/12/28/Hexo安装笔记/index.html">
 <meta property="og:site_name" content="Zhaohan‘s bolg">
-<meta property="og:description" content="https://help.github.com/articles/setting-up-an-apex-domain/">
-<meta property="og:updated_time" content="2016-12-28T15:04:04.000Z">
+<meta property="og:description" content="hexo是一款基于github的博客系统
+以下安装时在mac上进行的
+
+##1.本地安装首先要安装nodejs。
+
+在本地建一个目录作保存你的站点的本地备份
+
+12$ cd /home/user/admin/$ mkdir my.me
+
+安装,参考官网说明
+
+12345$ sudo npm install hexo-cli -g$ hexo init blog$ cd blog$ npm ins">
+<meta property="og:updated_time" content="2016-12-29T02:04:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo安装笔记">
-<meta name="twitter:description" content="https://help.github.com/articles/setting-up-an-apex-domain/">
+<meta name="twitter:description" content="hexo是一款基于github的博客系统
+以下安装时在mac上进行的
+
+##1.本地安装首先要安装nodejs。
+
+在本地建一个目录作保存你的站点的本地备份
+
+12$ cd /home/user/admin/$ mkdir my.me
+
+安装,参考官网说明
+
+12345$ sudo npm install hexo-cli -g$ hexo init blog$ cd blog$ npm ins">
   
     <link rel="alternate" href="/atom.xml" title="Zhaohan‘s bolg" type="application/atom+xml">
   
@@ -85,14 +118,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><a href="https://help.github.com/articles/setting-up-an-apex-domain/" target="_blank" rel="external">https://help.github.com/articles/setting-up-an-apex-domain/</a></p>
+        <blockquote>
+<p>hexo是一款基于github的博客系统</p>
+<p>以下安装时在mac上进行的</p>
+</blockquote>
+<p>##1.本地安装<br>首先要安装nodejs。</p>
+<ul>
+<li>在本地建一个目录作保存你的站点的本地备份</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ cd /home/user/admin/</div><div class="line">$ mkdir my.me</div></pre></td></tr></table></figure>
+<ul>
+<li>安装,参考<a href="https://hexo.io/" target="_blank" rel="external">官网说明</a></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install hexo-cli -g</div><div class="line">$ hexo init blog</div><div class="line">$ cd blog</div><div class="line">$ npm install</div><div class="line">$ hexo server</div></pre></td></tr></table></figure>
+<p>##2.上传到github</p>
+<ul>
+<li><p>在github上新建一个repository</p>
+</li>
+<li><p>将github上的repository clone到本地</p>
+</li>
+<li></li>
+</ul>
+<p>##3.配置个人域名</p>
+<ul>
+<li><p>首先你得有一个域名</p>
+<p>  不管是免费的tk域名还是自己购买的域名都可以</p>
+</li>
+<li><p>在github的repository里面配置你的域名</p>
+</li>
+<li><p>配置你的域名的解析</p>
+<p>  这里是官网提供的方法<br>  <a href="https://help.github.com/articles/setting-up-an-apex-domain/" target="_blank" rel="external">https://help.github.com/articles/setting-up-an-apex-domain/</a></p>
+<ul>
+<li><p>A解析</p>
+</li>
+<li><p>CNAME解析</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>##4.安装模板</p>
+<p>##5.基本使用</p>
+<ul>
+<li>新建文章</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;输入一个名字作为你的md文件名&quot;</div></pre></td></tr></table></figure>
+<ul>
+<li>上传文章</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd /home/user/admin/my.me</div><div class="line">$ hexo	clean</div><div class="line">$ hexo generate</div><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
+<ul>
+<li>修改了_config.yml后重新部署</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhaohan.me/2016/12/28/Hexo安装笔记/" data-id="cix941jx4000003s6e9nt3gx3" class="article-share-link">Share</a>
+      <a data-url="http://zhaohan.me/2016/12/28/Hexo安装笔记/" data-id="cix9qb88p0000k603pcat0vpj" class="article-share-link">Share</a>
       
       
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/互联网/">互联网</a></li></ul>
+
     </footer>
   </div>
   
@@ -118,9 +203,23 @@
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/互联网/">互联网</a></li></ul>
+    </div>
+  </div>
+
 
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">标签云</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/互联网/" style="font-size: 10px;">互联网</a>
+    </div>
+  </div>
+
   
     
   <div class="widget-wrap">
