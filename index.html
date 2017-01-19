@@ -5,7 +5,7 @@
   
 
 
-<html class="theme-next muse use-motion" lang="zh-CN">
+<html class="theme-next pisces use-motion" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -97,7 +97,7 @@
   var NexT = window.NexT || {};
   var CONFIG = {
     root: '/',
-    scheme: 'Muse',
+    scheme: 'Pisces',
     sidebar: {"position":"left","display":"post"},
     fancybox: true,
     motion: true,
@@ -318,23 +318,18 @@
       
         
           
-            <p>在java项目里面我们使用的最多的通常是log4j这套日志框架…<br>2011年log4j创始人，设计出又一个开源日志组件：Logback。</p>
-<p><a href="http://logback.qos.ch/" target="_blank" rel="external">logback官网</a>介绍:</p>
-<p>logback当前分成三个模块：logback-core,logback- classic和logback-access。</p>
-<p>logback-core是其它两个模块的基础模块。</p>
-<p>logback-classic是log4j的一个 改良版本。<br>此外logback-classic完整实现SLF4J API使你可以很方便地更换成其它日志系统如log4j或JDK14 Logging。</p>
-<p>logback-access访问模块与Servlet容器集成提供通过Http来访问日志的功能</p>
-<p><strong>logback依赖的包：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line">&lt;dependency&gt;</div><div class="line">		    &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">		    &lt;artifactId&gt;logback-core&lt;/artifactId&gt;</div><div class="line">		    &lt;version&gt;$&#123;logback.version&#125;&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">		    &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">		    &lt;artifactId&gt;logback-access&lt;/artifactId&gt;</div><div class="line">		    &lt;version&gt;$&#123;logback.version&#125;&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">		    &lt;groupId&gt;ch.qos.logback&lt;/groupId&gt;</div><div class="line">		    &lt;artifactId&gt;logback-classic&lt;/artifactId&gt;</div><div class="line">		    &lt;version&gt;$&#123;logback.version&#125;&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">		    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">		    &lt;artifactId&gt;jcl-over-slf4j&lt;/artifactId&gt;</div><div class="line">		    &lt;version&gt;1.6.1&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div><div class="line">		&lt;dependency&gt;</div><div class="line">		    &lt;groupId&gt;org.slf4j&lt;/groupId&gt;</div><div class="line">		    &lt;artifactId&gt;log4j-over-slf4j&lt;/artifactId&gt;</div><div class="line">		    &lt;version&gt;1.7.21&lt;/version&gt;</div><div class="line">		&lt;/dependency&gt;</div></pre></td></tr></table></figure>
-<p><strong>logback.xml基础配置</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div></pre></td><td class="code"><pre><div class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</div><div class="line"></div><div class="line">&lt;!-- For assistance related to logback-translator or configuration  --&gt;</div><div class="line">&lt;!-- files in general, please contact the logback user mailing list --&gt;</div><div class="line">&lt;!-- at http://www.qos.ch/mailman/listinfo/logback-user             --&gt;</div><div class="line">&lt;!--                                                                --&gt;</div><div class="line">&lt;!-- For professional support please see                            --&gt;</div><div class="line">&lt;!--    http://www.qos.ch/shop/products/professionalSupport         --&gt;</div><div class="line">&lt;!--                                                                --&gt;</div><div class="line">&lt;configuration&gt;</div><div class="line">  &lt;appender name=&quot;R&quot; class=&quot;ch.qos.logback.core.rolling.RollingFileAppender&quot;&gt;</div><div class="line">    &lt;!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender--&gt;</div><div class="line">    &lt;File&gt;/home/admin/logs/center.log&lt;/File&gt;</div><div class="line">    &lt;encoder&gt;</div><div class="line">      &lt;pattern&gt;=&amp;lt;%-4r&amp;gt; &amp;lt;%-5p&amp;gt; &amp;lt;%d&#123;yyyy-MM-dd HH:mm:ssS&#125;&amp;gt; &amp;lt;%c&amp;gt; &amp;lt;%m&amp;gt;%n&lt;/pattern&gt;</div><div class="line">    &lt;/encoder&gt;</div><div class="line">    &lt;rollingPolicy class=&quot;ch.qos.logback.core.rolling.FixedWindowRollingPolicy&quot;&gt;</div><div class="line">      &lt;maxIndex&gt;20&lt;/maxIndex&gt;</div><div class="line">      &lt;FileNamePattern&gt;/home/admin/logs/center.log.%i&lt;/FileNamePattern&gt;</div><div class="line">    &lt;/rollingPolicy&gt;</div><div class="line">    &lt;triggeringPolicy class=&quot;ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy&quot;&gt;</div><div class="line">      &lt;MaxFileSize&gt;102400KB&lt;/MaxFileSize&gt;</div><div class="line">    &lt;/triggeringPolicy&gt;</div><div class="line">  &lt;/appender&gt;</div><div class="line">  &lt;logger name=&quot;mybatis&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;com.roc.japp&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;com.ibatis&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;java.sql.PreparedStatement&quot; level=&quot;INFO&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;com.teamsun&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;com.ibatis.sqlmap.engine.impl.SqlMapClientDelegate&quot; level=&quot;INFO&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;org.apache.ibatis.datasource&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;net.sf&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;org.springframework.jdbc.core.JdbcTemplate&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;sqlmapper&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;java.sql.Statement&quot; level=&quot;DEBUG&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;com.ibatis.common.jdbc.SimpleDataSource&quot; level=&quot;INFO&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;java.sql.ResultSet&quot; level=&quot;INFO&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;java.sql.Connection&quot; level=&quot;INFO&quot;/&gt;</div><div class="line">  &lt;logger name=&quot;com.ibatis.common.jdbc.ScriptRunner&quot; level=&quot;INFO&quot;/&gt;</div><div class="line">  &lt;root level=&quot;INFO&quot;&gt;</div><div class="line">    &lt;appender-ref ref=&quot;R&quot;/&gt;</div><div class="line">  &lt;/root&gt;</div><div class="line">&lt;/configuration&gt;</div></pre></td></tr></table></figure>
-<p>当然，这个熟悉了log4j.properties的你在读xml的时候心中可能会有一万只草泥马奔腾而过，logback为了照顾这部分人的情绪（瞎猜的），提供了可爱的小工具:</p>
-<p>log4j.properties转换到logback.xml： <a href="http://logback.qos.ch/translator/" target="_blank" rel="external">log4j.properties to logback.xml Translator</a></p>
-<p>logback.xml转换到logback.groovy: <a href="http://logback.qos.ch/translator/asGroovy.html" target="_blank" rel="external">logback.xml to logback.groovy translator</a></p>
-<hr>
-<p>本文系原创文章<br>如需转载请注明出处：<a href="http://zhaohan.me/">http://zhaohan.me/</a></p>
-
-          
+          在java项目里面我们使用的最多的通常是log4j这套日志框架…2011年log4j创始人，设计出又一个开源日志组件：Logback。
+logback官网介绍:
+logback当前分成三个模块：logback-core,logback- classic和logback-access。
+logback
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/06/我们换一种打印日志的方式/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -451,15 +446,16 @@
       
         
           
-            <p>在简书的不知道哪个版本的编辑器出来之前，在网上写图文文章都要经历蛋疼的图片上传过程。终于有一天，这个问题被简书的“直接粘贴图片”功能终结。而终于有一天我发现了一个叫做summernote的编辑器，通过它和七牛云服务实现了简书的“直接粘贴图片”的功能。</p>
-<p>简书的编辑器里面可以直接粘贴图片是通过七牛的云服务实现的，用户粘贴一张图片的时候简书拿到图片的base64信息，再把base64信息上传到七牛。</p>
-<p>于是，结合summernote和七牛，我做了一个可以直接粘贴图片的web编辑器：</p>
-<p><img src="http://ojaere508.bkt.clouddn.com/image/article/1483843952622" alt=""></p>
-<p>核心代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div></pre></td><td class="code"><pre><div class="line">...</div><div class="line">&lt;!-- include libraries(jQuery, bootstrap) --&gt;</div><div class="line">&lt;link href=&quot;http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css&quot; rel=&quot;stylesheet&quot;&gt;</div><div class="line">&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js&quot;&gt;&lt;/script&gt; </div><div class="line">&lt;script src=&quot;http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js&quot;&gt;&lt;/script&gt; </div><div class="line"></div><div class="line">&lt;!-- include summernote css/js--&gt;</div><div class="line">&lt;link href=&quot;http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.css&quot; rel=&quot;stylesheet&quot;&gt;</div><div class="line">&lt;script src=&quot;http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.2/summernote.js&quot;&gt;&lt;/script&gt;</div><div class="line">...</div><div class="line"></div><div class="line">$.ajax(&#123;</div><div class="line">      url: &apos;https://api.github.com/emojis&apos;,</div><div class="line">      async: false </div><div class="line">    &#125;).then(function(data) &#123;</div><div class="line">      window.emojis = Object.keys(data);</div><div class="line">      window.emojiUrls = data; </div><div class="line">    &#125;);;</div><div class="line"></div><div class="line">    var ShareButton = function (context) &#123;</div><div class="line">          var ui = $.summernote.ui;</div><div class="line"></div><div class="line">          // create button</div><div class="line">          var button = ui.button(&#123;</div><div class="line">            contents: &apos;&lt;i class=&quot;fa fa-share&quot;/&gt; 发表&apos;,</div><div class="line">            tooltip: &apos;shareArticle&apos;,</div><div class="line">            click: function () &#123;</div><div class="line">              alert(&apos;发表文章&apos;);</div><div class="line">            &#125;</div><div class="line">          &#125;);</div><div class="line"></div><div class="line">          return button.render();   // return button as jquery object </div><div class="line">        &#125;</div><div class="line"></div><div class="line">$(function()&#123;</div><div class="line">     $(&apos;#summernote&apos;).summernote(&#123;</div><div class="line">         height: null,                 // set editor height</div><div class="line">         minHeight: 300,             // set minimum height of editor</div><div class="line">         maxHeight: null,             // set maximum height of editor</div><div class="line">         focus: true,                  // set focus to editable area after initializing summernote</div><div class="line">         codemirror: &#123; // codemirror options</div><div class="line">           theme: &apos;monokai&apos;</div><div class="line">         &#125;,</div><div class="line">         toolbar: [</div><div class="line">               // [groupName, [list of button]]</div><div class="line">               [&apos;style&apos;, [&apos;style&apos;, &apos;normal&apos;, &apos;blockquote&apos;, &apos;pre&apos;, &apos;h1&apos;, &apos;h3&apos;, &apos;h4&apos;, &apos;h5&apos;, &apos;h6&apos;]],</div><div class="line">               [&apos;style&apos;, [&apos;bold&apos;, &apos;italic&apos;, &apos;underline&apos;, &apos;clear&apos;]],</div><div class="line">               [&apos;font&apos;, [&apos;strikethrough&apos;, &apos;superscript&apos;, &apos;subscript&apos;]],</div><div class="line">               [&apos;fontsize&apos;, [&apos;fontsize&apos;]],</div><div class="line">               [&apos;color&apos;, [&apos;color&apos;]],</div><div class="line">               [&apos;para&apos;, [&apos;ul&apos;, &apos;ol&apos;, &apos;paragraph&apos;]],</div><div class="line">               [&apos;height&apos;, [&apos;height&apos;]],</div><div class="line">                [&apos;insert&apos;, [&apos;picture&apos;,&apos;table&apos;,&apos;hr&apos;]],</div><div class="line">                [&apos;mybutton&apos;, [&apos;shareArticle&apos;]]</div><div class="line">          ],</div><div class="line">        /* buttons: &#123;</div><div class="line">           shareArticle: ShareButton</div><div class="line">         &#125;, */</div><div class="line">    hint: &#123;</div><div class="line">        match: /:([\-+\w]+)$/,</div><div class="line">        search: function (keyword, callback) &#123;</div><div class="line">          callback($.grep(emojis, function (item) &#123;</div><div class="line">            return item.indexOf(keyword)  === 0;</div><div class="line">          &#125;));</div><div class="line">        &#125;,</div><div class="line">        template: function (item) &#123;</div><div class="line">          var content = emojiUrls[item];</div><div class="line">          return &apos;[站外图片上传中……(2)] :&apos; + item + &apos;:&apos;;</div><div class="line">        &#125;,</div><div class="line">        content: function (item) &#123;</div><div class="line">          var url = emojiUrls[item];</div><div class="line">          if (url) &#123;</div><div class="line">            return $(&apos;&lt;img /&gt;&apos;).attr(&apos;src&apos;, url).css(&apos;width&apos;, 20)[0];</div><div class="line">          &#125;</div><div class="line">          return &apos;&apos;;</div><div class="line">        &#125;</div><div class="line">      &#125;,</div><div class="line">      callbacks: &#123;</div><div class="line">        onImageUpload: function(files) &#123;//上传图片到服务器</div><div class="line">          var node=document.createElement(&quot;p&quot;);</div><div class="line">          var imgKey =  uploadImage(files);</div><div class="line">          node.id=imgKey;</div><div class="line">          node.innerHTML = &quot;[uploading image &quot;+imgKey+&quot;]&quot;;</div><div class="line">          $(&apos;#summernote&apos;).summernote(&apos;insertNode&apos;, node);</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">     &#125;);</div><div class="line">&#125;)</div><div class="line"></div><div class="line">function uploadImage(files)&#123;</div><div class="line">    var date = new Date();</div><div class="line">     var timestamp = date.getTime();</div><div class="line">      var key = timestamp;</div><div class="line">      var imgURL = uploadToQiniu(files,key);</div><div class="line">      return key</div><div class="line">&#125;</div><div class="line">...</div><div class="line"></div><div class="line">//获取七牛的uptoken</div><div class="line">function uploadToQiniu(files,key)&#123;</div><div class="line">    $.ajax(&#123;</div><div class="line">        type: &quot;get&quot;,</div><div class="line">        url: &apos;$&#123;pageContext.request.contextPath&#125;/getToken?bucket=你的七牛bucket&apos;,</div><div class="line">        cache: false,</div><div class="line">        contentType: false, </div><div class="line">        processData: false,</div><div class="line">        dataType : &quot;json&quot;,</div><div class="line">        success: function (data) &#123;</div><div class="line">            var uptoken = data.uptoken;   //获取你的七牛uptoken</div><div class="line">            var prefix = data.prefix;    //获取你的七牛文件存储地址</div><div class="line">            console.log(&quot;uptoken:&quot;+uptoken+&quot; prefix:&quot;+prefix);</div><div class="line">            var form = new FormData();</div><div class="line">            form.append(&quot;file&quot;, files[0]);</div><div class="line">            form.append(&quot;key&quot;, &quot;image/article/&quot;+key);</div><div class="line">            form.append(&quot;token&quot;, uptoken);</div><div class="line">            $.ajax(&#123;</div><div class="line">                data: form,</div><div class="line">                type: &quot;POST&quot;,</div><div class="line">                url: &quot;http://up.qiniu.com&quot;,</div><div class="line">                cache: false,</div><div class="line">                contentType: false, </div><div class="line">                processData: false,</div><div class="line">                dataType : &quot;json&quot;,</div><div class="line">                success: function (data) &#123;</div><div class="line">                    var iUrl = prefix+data.key;</div><div class="line">                    $(&quot;#&quot;+key).replaceWith(&quot;&lt;p&gt;&quot;+iUrl+&quot;&lt;/p&gt;&lt;img src=&apos;&quot;+iUrl+&quot;&apos;/&gt;&quot;);    //这里的“replaceWith”里面写一个img标签src为iUrl，无意中发现简书编辑器的一个bug</div><div class="line">                    /* $(&quot;#&quot;+key).replaceWith(&quot;[站外图片上传中……(2)]&quot;);    //这里的“replaceWith”里面写一个img标签src为iUrl，无意中发现简书编辑器的一个bug */</div><div class="line">                &#125;,</div><div class="line">                error: function(XMLHttpRequest, textStatus, errorThrown) &#123;</div><div class="line">                    alert(&apos;上传失败&apos;) </div><div class="line">                    alert(&quot;status&quot;+XMLHttpRequest.status);</div><div class="line">                    alert(&quot;readyState&quot;+XMLHttpRequest.readyState);</div><div class="line">                    alert(&quot;textStatus&quot;+textStatus);</div><div class="line">                &#125;</div><div class="line">            &#125;);                    </div><div class="line">        &#125;,</div><div class="line">        error: function(XMLHttpRequest, textStatus, errorThrown) &#123;</div><div class="line">            alert(&apos;上传失败&apos;) </div><div class="line">            alert(&quot;status&quot;+XMLHttpRequest.status);</div><div class="line">            alert(&quot;readyState&quot;+XMLHttpRequest.readyState);</div><div class="line">            alert(&quot;textStatus&quot;+textStatus);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>完整的服务器端代码：<br><a href="https://github.com/simplty/summernote_qiniu_editor" target="_blank" rel="external">summernote_qiniu_editor</a></p>
-
-          
+          在简书的不知道哪个版本的编辑器出来之前，在网上写图文文章都要经历蛋疼的图片上传过程。终于有一天，这个问题被简书的“直接粘贴图片”功能终结。而终于有一天我发现了一个叫做summernote的编辑器，通过它和七牛云服务实现了简书的“直接粘贴图片”的功能。
+简书的编辑器里面可以直接粘贴图片是通过七牛的云服
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2017/01/06/一招教你做出比简书更酷的web编辑器/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -576,23 +572,17 @@
       
         
           
-            <p>一个大概的业界标准工资<br><a href="https://www.glassdoor.com/Salaries/index.htm" target="_blank" rel="external">https://www.glassdoor.com/Salaries/index.htm</a></p>
-<p>一前辈写的成功面试Facebook的文章<br><a href="http://cenalulu.github.io/mysql/how-i-become-a-facebook-dba/" target="_blank" rel="external">http://cenalulu.github.io/mysql/how-i-become-a-facebook-dba/</a></p>
-<p>色彩搭配<br><a href="https://www.design-seeds.com/blog" target="_blank" rel="external">https://www.design-seeds.com/blog</a></p>
-<p>图标搜索<br><a href="http://www.iconfont.cn/" target="_blank" rel="external">http://www.iconfont.cn/</a></p>
-<p>家居布局<br><a href="http://www.baicha.me/" target="_blank" rel="external">http://www.baicha.me/</a></p>
-<p>创意<br><a href="https://www.behance.net/" target="_blank" rel="external">https://www.behance.net/</a></p>
-<p><a href="https://alpha.wallhaven.cc/" target="_blank" rel="external">https://alpha.wallhaven.cc/</a></p>
-<p><a href="http://www.doooor.com/" target="_blank" rel="external">http://www.doooor.com/</a></p>
-<p><a href="http://subtlepatterns.com/" target="_blank" rel="external">http://subtlepatterns.com/</a></p>
-<p><a href="http://www.pinterest.com/" target="_blank" rel="external">http://www.pinterest.com/</a></p>
-<p><a href="https://500px.com/" target="_blank" rel="external">https://500px.com/</a></p>
-<p><a href="http://www.imgii.com/" target="_blank" rel="external">http://www.imgii.com/</a></p>
-<p>待续…</p>
-<hr>
-<p>本文系原创文章<br>如需转载请注明出处：<a href="http://zhaohan.me/">http://zhaohan.me/</a></p>
-
-          
+          一个大概的业界标准工资https://www.glassdoor.com/Salaries/index.htm
+一前辈写的成功面试Facebook的文章http://cenalulu.github.io/mysql/how-i-become-a-facebook-dba/
+色彩搭配https://w
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/29/一些有趣有用的网站/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -709,25 +699,16 @@
       
         
           
-            <p>微信官方提供了两个不同的方法获取用户的信息，wx.login(OBJECT)和wx.getUserInfo(OBJECT）。getUserInfo获取用户信息，需要先调用 wx.login 接口。</p>
-<p>如果只需要获取用户的基本信息，如性别昵称等，在小程序里面通过js就可以获取到。但是如果想要获取用户的openid和session_key就需要自己写一个服务端了。</p>
-<p>网上有一个<a href="https://leancloud.cn" target="_blank" rel="external">leancloud</a>可以帮你实现“服务端”部分，但是作为技术宅怎么可以因为这么点小问题就把自己的AK和SK交给第三方呢？</p>
-<p>于是就有了下文…..</p>
-<p>微信小程序获取用户的openid分为两个步骤：</p>
-<p>1.获取code</p>
-<p>2.通过code获取用户的openid和session key</p>
-<p>先说结论，以下是亲测可用的代码：</p>
-<p><strong>客户端</strong></p>
-<p>app.js(没错就是小程序里面初始化自带的app.js)</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div></pre></td><td class="code"><pre><div class="line">//app.js</div><div class="line">App(&#123;</div><div class="line">  onLaunch: function () &#123;</div><div class="line">    //调用API从本地缓存中获取数据</div><div class="line">    var logs = wx.getStorageSync(&apos;logs&apos;) || []</div><div class="line">    logs.unshift(Date.now())</div><div class="line">    wx.setStorageSync(&apos;logs&apos;, logs)</div><div class="line"></div><div class="line">    wx.login(&#123;</div><div class="line">      success: function(res) &#123;</div><div class="line">        if (res.code) &#123;</div><div class="line">          //发起网络请求</div><div class="line">          wx.request(&#123;</div><div class="line">            url: &apos;http://myDomain/getSessionKey?code=&apos;+res.code,</div><div class="line">            header: &#123;</div><div class="line">                &apos;content-type&apos;: &apos;application/json&apos;</div><div class="line">            &#125;,</div><div class="line">            success: function(res) &#123;</div><div class="line">              //返回微信产生的openid和session_key</div><div class="line">              console.log(&quot;res.data=====&quot;+res.data)</div><div class="line">	    		wx.setStorageSync(&apos;userInfo&apos;, res.data)</div><div class="line">            &#125;</div><div class="line">          &#125;);</div><div class="line">        &#125; else &#123;</div><div class="line">          console.log(&apos;获取用户登录态失败！&apos; + res.errMsg)</div><div class="line">        &#125;</div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  </div><div class="line"></div><div class="line">  &#125;,</div><div class="line">  getUserInfo:function(cb)&#123;</div><div class="line">    var that = this</div><div class="line">    if(this.globalData.userInfo)&#123;</div><div class="line">      typeof cb == &quot;function&quot; &amp;&amp; cb(this.globalData.userInfo)</div><div class="line">    &#125;else&#123;</div><div class="line">      //调用登录接口</div><div class="line">      wx.login(&#123;</div><div class="line">        success: function () &#123;</div><div class="line">          wx.getUserInfo(&#123;</div><div class="line">            success: function (res) &#123;</div><div class="line">              that.globalData.userInfo = res.userInfo</div><div class="line">              typeof cb == &quot;function&quot; &amp;&amp; cb(that.globalData.userInfo)</div><div class="line">            &#125;</div><div class="line">          &#125;)</div><div class="line">        &#125;</div><div class="line">      &#125;)</div><div class="line">    &#125;</div><div class="line">  &#125;,</div><div class="line">  globalData:&#123;</div><div class="line">    userInfo:null</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
-<p><strong>服务端</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div></pre></td><td class="code"><pre><div class="line">@ResponseBody</div><div class="line">@RequestMapping(&quot;/getSessionKey&quot;)</div><div class="line">public com.alibaba.fastjson.JSONObject getSessionKey(HttpServletRequest req, HttpServletResponse resp) throws IOException &#123;</div><div class="line">	String APP_ID = &quot;&quot;;</div><div class="line">	String APP_SECRET = &quot;&quot;;</div><div class="line">	String code = req.getParameter(&quot;code&quot;);</div><div class="line">	</div><div class="line">	String url = &quot;https://api.weixin.qq.com/sns/jscode2session?&quot;</div><div class="line">			+ &quot;appid=&quot;+APP_ID</div><div class="line">			+ &quot;&amp;secret=&quot;+APP_SECRET</div><div class="line">			+ &quot;&amp;js_code=&quot;+code</div><div class="line">			+ &quot;&amp;grant_type=authorization_code&quot;;</div><div class="line">	</div><div class="line">	Map&lt;String, Object&gt; result = httpGet(url);</div><div class="line">	</div><div class="line">	JSONObject json =JSON.parseObject(result.get(&quot;result&quot;).toString());</div><div class="line">	</div><div class="line">	String openId = json.get(&quot;openid&quot;).toString();</div><div class="line">	String session_key = json.get(&quot;session_key&quot;).toString();</div><div class="line">	</div><div class="line">	JSONObject reJson = new JSONObject();</div><div class="line">	reJson.put(&quot;openId&quot;, openId);</div><div class="line">	reJson.put(&quot;session_key&quot;, session_key);</div><div class="line">	return reJson;</div><div class="line">&#125;</div><div class="line">private static Map&lt;String,Object&gt; httpGet(String url) &#123;  </div><div class="line">	Map&lt;String,Object&gt; resultMap = new HashMap&lt;String, Object&gt;();</div><div class="line">    org.apache.http.impl.client.CloseableHttpClient httpclient = HttpClients.createDefault();  </div><div class="line">    try &#123;  </div><div class="line">        org.apache.http.client.methods.HttpGet httpget = new HttpGet(url);  </div><div class="line">        org.apache.http.client.methods.CloseableHttpResponse response = httpclient.execute(httpget);  </div><div class="line">        try &#123;  </div><div class="line">            org.apache.http.HttpEntity entity = response.getEntity();  </div><div class="line">            String resStr = EntityUtils.toString(entity);</div><div class="line">            resultMap.put(&quot;result&quot;, resStr);</div><div class="line">            resultMap.put(&quot;status&quot;, response.getStatusLine());</div><div class="line">        &#125;catch (Exception e) &#123;</div><div class="line">        	e.printStackTrace();</div><div class="line">		&#125; finally &#123;  </div><div class="line">			response.close();  </div><div class="line">        &#125;  </div><div class="line">    &#125; catch (ClientProtocolException e) &#123;  </div><div class="line">        e.printStackTrace();  </div><div class="line">    &#125; catch (ParseException e) &#123;  </div><div class="line">        e.printStackTrace();</div><div class="line">    &#125; catch (IOException e) &#123;  </div><div class="line">        e.printStackTrace();  </div><div class="line">    &#125; finally &#123;  </div><div class="line">        try &#123;  </div><div class="line">            httpclient.close();  </div><div class="line">        &#125; catch (IOException e) &#123;  </div><div class="line">            e.printStackTrace();  </div><div class="line">        &#125;  </div><div class="line">    &#125; </div><div class="line">    return resultMap;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在实际的生产中，不建议将用户的openid和sessionKey在网络上传输，<a href="https://mp.weixin.qq.com/debug/wxadoc/dev/api/api-login.html?t=20161222#wxloginobject" target="_blank" rel="external">微信官方</a>提供了这样的一张图：<br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483844831533" alt=""></p>
-<p>这里建议用户在自己的系统里面将openid保存并生成一个第三方的session，使用自己生成的第三方session作为key在网络上传输</p>
-<hr>
-<p>本文系原创文章<br>如需转载请注明出处：<a href="http://zhaohan.me/">http://zhaohan.me/</a></p>
-
-          
+          微信官方提供了两个不同的方法获取用户的信息，wx.login(OBJECT)和wx.getUserInfo(OBJECT）。getUserInfo获取用户信息，需要先调用 wx.login 接口。
+如果只需要获取用户的基本信息，如性别昵称等，在小程序里面通过js就可以获取到。但是如果想要获取用户的o
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/29/微信小程序获取用户openid/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -844,112 +825,15 @@
       
         
           
-            <p>Hexo 是一个简单地、轻量地、基于Node的一个静态博客框架，可以方便的生成静态网页托管在github和Heroku上，引用Hexo作者 @tommy351 的话：<br>快速、简单且功能强大的 Node.js 博客框架。A fast, simple &amp; powerful blog framework, powered by Node.js.</p>
-<p><strong>下面的教程比较长，但是不需要被这个吓退，小白可以按照步骤一步步操作完成自己的站点搭建。建好以后就是一劳永逸的事了。</strong></p>
-<p>以下安装是在mac上进行….</p>
-<p>##1.本地安装<br>安装git。（mac自带不需要认为安装）</p>
-<p>安装nodejs。</p>
-<p>安装hexo：</p>
-<p>这里假设你的个人域名是my.me</p>
-<ul>
-<li>安装,参考<a href="https://hexo.io/" target="_blank" rel="external">官网说明</a></li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">$ sudo npm install hexo-cli -g</div><div class="line">$ cd /home/user/admin</div><div class="line">$ hexo init my.me</div><div class="line">$ cd my.me</div><div class="line">$ npm install</div><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>至此hexo就安装完成，在浏览器中打开 <a href="http://localhost:4000" target="_blank" rel="external">http://localhost:4000</a> 即可看到效果</p>
-<ul>
-<li>配置github,在配置文件里面配置自己的github的url<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483901968896.png" alt=""></li>
-</ul>
-<p>##2.上传到github</p>
-<ul>
-<li>在<a href="https://github.com/" target="_blank" rel="external">github</a>上新建一个repository</li>
-</ul>
-<p><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483897863644.png" alt=""></p>
-<p>创建的时候名字一定要注意,只能填写自己的github用户名<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483897987812.png" alt=""></p>
-<p>创建完之后会得到一些命令,看不懂没关系，照着后文的做就可以了<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483898102939.png" alt=""></p>
-<ul>
-<li>将github上的repository clone到本地</li>
-</ul>
-<p>进入到第一步创建的目录，在这个地方逐条执行上面的图片里的命令。这个文件夹就用来保存这个资源库（也就是你本地的一份网站）</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">$ cd  /home/user/admin/my.me</div><div class="line">$ echo &quot;# test.github.io&quot; &gt;&gt; README.md</div><div class="line">$ git init</div><div class="line">$ git add README.md</div><div class="line">$ git commit -m &quot;first commit&quot;</div><div class="line">$ git remote add origin https://github.com/你的用户名/你的用户名.github.io.git</div><div class="line">$ git push -u origin master</div></pre></td></tr></table></figure>
-<p>##3.配置个人域名</p>
-<ul>
-<li><p>首先你得有一个域名</p>
-<p>  不管是免费的tk域名还是自己购买的域名都可以</p>
-</li>
-<li><p>在github的repository里面配置你的域名</p>
-<ul>
-<li><p>进入到你的github主页，<a href="">https://github.com/你的用户名</a>,找到你刚才建的repository，点击进去<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483898619696.png" alt=""></p>
-</li>
-<li><p>在里面找到填写自己域名的地方，填写你注册的域名<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483898698639.png" alt=""></p>
-</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><p>配置你的域名的解析</p>
-<p>  官网提供了配制方法：<br>  <a href="https://help.github.com/articles/setting-up-an-apex-domain/" target="_blank" rel="external">https://help.github.com/articles/setting-up-an-apex-domain/</a> 有兴趣可以自己去读。</p>
-<p>  全完所说的落实到操作就两步：1.配置cname解析。2.配置A解析。</p>
-<p>  不懂？没关系，跟着操作就行了，我们的目的不是建造互联网，而是学会使用它。</p>
-<ul>
-<li>配置的A解析和CNAME解析规则最终长成这样就行了<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483899230046.png" alt=""></li>
-</ul>
-</li>
-</ul>
-<p>##4.安装主题</p>
-<p>我选择安装的主题是<a href="https://github.com/iissnan/hexo-theme-next" target="_blank" rel="external">next</a>,next的官方网站是<a href="http://theme-next.iissnan.com/" target="_blank" rel="external">http://theme-next.iissnan.com/</a></p>
-<p>里面描述了复杂无比的配制方法，简单配置，用过以下几个步骤即可完成</p>
-<p>安装步骤<br>1.下载Next主题代码,下载最新的稳定版,比如下文中说的0.4.0版本<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483900513524.png" alt=""></p>
-<p>2.将下载的压缩包解压后放在 my.me/theme/next目录下</p>
-<p>3.设置站点 my.me/_config.yml的theme字段值为next<br><img src="http://ojaere508.bkt.clouddn.com/image/sqEditor/1483900135008.png" alt=""></p>
-<p>4.生成新页面</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo g</div></pre></td></tr></table></figure>
-<p>5.开启服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo s --debug</div></pre></td></tr></table></figure>
-<p><strong>此时就可以在本地预览了。</strong></p>
-<p>6.发布代码</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo d</div></pre></td></tr></table></figure>
-<p><strong>在浏览器地址栏里面输入你的个人域名试试看…</strong></p>
-<p>##5.基本使用</p>
-<ul>
-<li>本地启动</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ hexo server </div><div class="line">$ hexo s --debug #启动 Hexo 本地站点，并开启调试模式</div></pre></td></tr></table></figure>
-<ul>
-<li>新建文章</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new &quot;输入一个名字作为你的md文件名&quot;</div></pre></td></tr></table></figure>
-<ul>
-<li>上传文章</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ cd /home/user/admin/my.me</div><div class="line">$ hexo	clean #简写为 hexo c</div><div class="line">$ hexo generate #简写为 hexo g</div><div class="line">$ hexo deploy #简写为 hexo d</div></pre></td></tr></table></figure>
-<ul>
-<li>修改了_config.yml后重新部署</li>
-</ul>
-<p>#6.安装多说</p>
-<p>给站点加入多说评论功能，基本所有主题都集成了，说一下基本操作，以及一些个性化设置</p>
-<ul>
-<li>打开多说首页,点 我要安装 ，登陆多说（微博或qq快捷登录），创建站点。</li>
-<li>按下图进行输入创建评论站点。 </li>
-</ul>
-<p><img src="http://ojaere508.bkt.clouddn.com/image/article/1483894975490" alt=""></p>
-<ul>
-<li><p>创建完以后进入管理后台，在左侧菜单栏里找到工具，右侧代码里看到short_name，也就是刚才输入的多说域名<br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483895308632" alt=""></p>
-</li>
-<li><p>在next的配置文件里面找到 duoshuo_shortname 将刚才填写的站点名称填写进去<br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483895530980" alt=""></p>
-</li>
-<li><p>多说评论框样式修改，CSS好的可以自己写，详见<a href="">多说文档</a><br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483896066947" alt=""></p>
-</li>
-</ul>
-<p>自己google丰衣足食……我用的是从网上下载的一个样式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div><div class="line">97</div><div class="line">98</div><div class="line">99</div><div class="line">100</div><div class="line">101</div><div class="line">102</div><div class="line">103</div><div class="line">104</div><div class="line">105</div><div class="line">106</div><div class="line">107</div><div class="line">108</div><div class="line">109</div><div class="line">110</div><div class="line">111</div><div class="line">112</div><div class="line">113</div><div class="line">114</div><div class="line">115</div><div class="line">116</div><div class="line">117</div><div class="line">118</div><div class="line">119</div><div class="line">120</div><div class="line">121</div><div class="line">122</div><div class="line">123</div><div class="line">124</div><div class="line">125</div><div class="line">126</div><div class="line">127</div><div class="line">128</div><div class="line">129</div><div class="line">130</div><div class="line">131</div><div class="line">132</div><div class="line">133</div><div class="line">134</div><div class="line">135</div><div class="line">136</div><div class="line">137</div><div class="line">138</div><div class="line">139</div><div class="line">140</div><div class="line">141</div><div class="line">142</div><div class="line">143</div><div class="line">144</div><div class="line">145</div><div class="line">146</div><div class="line">147</div><div class="line">148</div><div class="line">149</div><div class="line">150</div><div class="line">151</div><div class="line">152</div><div class="line">153</div><div class="line">154</div><div class="line">155</div><div class="line">156</div><div class="line">157</div><div class="line">158</div><div class="line">159</div><div class="line">160</div><div class="line">161</div><div class="line">162</div><div class="line">163</div><div class="line">164</div><div class="line">165</div><div class="line">166</div><div class="line">167</div><div class="line">168</div><div class="line">169</div><div class="line">170</div><div class="line">171</div><div class="line">172</div><div class="line">173</div></pre></td><td class="code"><pre><div class="line">/*Head Start*/</div><div class="line">#ds-thread #ds-reset ul.ds-comments-tabs li.ds-tab a.ds-current &#123;</div><div class="line">    border: 0px;</div><div class="line">    color: #6D6D6B;</div><div class="line">    text-shadow: none;</div><div class="line">    background: #F3F3F3;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-highlight &#123;</div><div class="line">    font-family: Microsoft YaHei, &quot;Helvetica Neue&quot;, Helvetica, Arial, Sans-serif;</div><div class="line">    ;font-size: 100%;</div><div class="line">    color: #6D6D6B !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset ul.ds-comments-tabs li.ds-tab a.ds-current:hover &#123;</div><div class="line">    color: #696a52;</div><div class="line">    background: #F2F2F2;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset a.ds-highlight:hover &#123;</div><div class="line">    color: #696a52 !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread &#123;</div><div class="line">    padding-left: 15px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset li.ds-post,#ds-thread #ds-reset #ds-hot-posts &#123;</div><div class="line">    overflow: visible;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-post-self &#123;</div><div class="line">    padding: 10px 0 10px 10px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset li.ds-post,#ds-thread #ds-reset .ds-post-self &#123;</div><div class="line">    border: 0 !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-reset .ds-avatar, #ds-thread #ds-reset ul.ds-children .ds-avatar &#123;</div><div class="line">    top: 15px;</div><div class="line">    left: -20px;</div><div class="line">    padding: 5px;</div><div class="line">    width: 36px;</div><div class="line">    height: 36px;</div><div class="line">    box-shadow: -1px 0 1px rgba(0,0,0,.15) inset;</div><div class="line">    border-radius: 46px;</div><div class="line">    background: #FAFAFA;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread .ds-avatar a &#123;</div><div class="line">    display: inline-block;</div><div class="line">    padding: 1px;</div><div class="line">    width: 32px;</div><div class="line">    height: 32px;</div><div class="line">    border: 1px solid #b9baa6;</div><div class="line">    border-radius: 50%;</div><div class="line">    background-color: #fff !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread .ds-avatar a:hover &#123;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread .ds-avatar &gt; img &#123;</div><div class="line">    margin: 2px 0 0 2px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-replybox &#123;</div><div class="line">    box-shadow: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset ul.ds-children .ds-replybox.ds-inline-replybox a.ds-avatar,</div><div class="line">#ds-reset .ds-replybox.ds-inline-replybox a.ds-avatar &#123;</div><div class="line">    left: 0;</div><div class="line">    top: 0;</div><div class="line">    padding: 0;</div><div class="line">    width: 32px !important;</div><div class="line">    height: 32px !important;</div><div class="line">    background: none;</div><div class="line">    box-shadow: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-reset .ds-replybox.ds-inline-replybox a.ds-avatar img &#123;</div><div class="line">    width: 32px !important;</div><div class="line">    height: 32px !important;</div><div class="line">    border-radius: 50%;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-reset .ds-replybox a.ds-avatar,</div><div class="line">#ds-reset .ds-replybox .ds-avatar img &#123;</div><div class="line">    padding: 0;</div><div class="line">    width: 32px !important;</div><div class="line">    height: 32px !important;</div><div class="line">    border-radius: 5px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-reset .ds-avatar img &#123;</div><div class="line">    width: 32px !important;</div><div class="line">    height: 32px !important;</div><div class="line">    border-radius: 32px;</div><div class="line">    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.22);</div><div class="line">    -webkit-transition: .8s all ease-in-out;</div><div class="line">    -moz-transition: .4s all ease-in-out;</div><div class="line">    -o-transition: .4s all ease-in-out;</div><div class="line">    -ms-transition: .4s all ease-in-out;</div><div class="line">    transition: .4s all ease-in-out;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.ds-post-self:hover .ds-avatar img &#123;</div><div class="line">    -webkit-transform: rotateX(360deg);</div><div class="line">    -moz-transform: rotate(360deg);</div><div class="line">    -o-transform: rotate(360deg);</div><div class="line">    -ms-transform: rotate(360deg);</div><div class="line">    transform: rotate(360deg);</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-comment-body &#123;</div><div class="line">    -webkit-transition-delay: initial;</div><div class="line">    -webkit-transition-duration: 0.4s;</div><div class="line">    -webkit-transition-property: all;</div><div class="line">    -webkit-transition-timing-function: initial;</div><div class="line">    background: #F7F7F7;</div><div class="line">    padding: 15px 15px 15px 47px;</div><div class="line">    border-radius: 5px;</div><div class="line">    box-shadow: #B8B9B9 0 1px 3px;</div><div class="line">    border: white 1px solid;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset ul.ds-children .ds-comment-body &#123;</div><div class="line">    padding-left: 15px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-comment-body p &#123;</div><div class="line">    color: #787968;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-comments &#123;</div><div class="line">    border-bottom: 0px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-powered-by &#123;</div><div class="line">    display: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-comments a.ds-user-name &#123;</div><div class="line">    font-weight: normal;</div><div class="line">    color: #3D3D3D !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-comments a.ds-user-name:hover &#123;</div><div class="line">    color: #D32 !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset #ds-bubble &#123;</div><div class="line">    display: none !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset #ds-hot-posts &#123;</div><div class="line">    border: 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-reset #ds-hot-posts .ds-gradient-bg &#123;</div><div class="line">    background: none;</div><div class="line">&#125;</div><div class="line"></div><div class="line">#ds-thread #ds-reset .ds-comment-body:hover &#123;</div><div class="line">    background-color: #F1F1F1;</div><div class="line">    -webkit-transition-delay: initial;</div><div class="line">    -webkit-transition-duration: 0.4s;</div><div class="line">    -webkit-transition-property: all;</div><div class="line">    -webkit-transition-timing-function: initial;</div><div class="line">&#125;</div><div class="line">/*Head End*/</div></pre></td></tr></table></figure>
-<ul>
-<li>接下来配置评论区<br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483897132401" alt=""> </li>
-</ul>
-<p>ua是什么？反正只有true和false，改一下看看变化就知道了。</p>
-<p>用户id怎么获得：<br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483897357591" alt=""></p>
-<p>这里就是啦<br><img src="http://ojaere508.bkt.clouddn.com/image/article/1483897424053" alt=""></p>
-
-          
+          Hexo 是一个简单地、轻量地、基于Node的一个静态博客框架，可以方便的生成静态网页托管在github和Heroku上，引用Hexo作者 @tommy351 的话：快速、简单且功能强大的 Node.js 博客框架。A fast, simple &amp; powerful blog framewo
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/28/Hexo安装笔记/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1066,17 +950,15 @@
       
         
           
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-          
+          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
+          ...
+          <!--noindex-->
+          <div class="post-button text-center">
+            <a class="btn" href="/2016/12/28/hello-world/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+          <!--/noindex-->
         
       
     </div>
@@ -1213,7 +1095,7 @@
 <div class="theme-info">
   Theme -
   <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
-    NexT.Muse
+    NexT.Pisces
   </a>
 </div>
 
@@ -1280,6 +1162,13 @@
 
   
   
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
 
   
 
